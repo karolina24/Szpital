@@ -64,6 +64,9 @@ CREATE TABLE `pacjęci` (
 
 INSERT INTO `pacjęci` (`Id_pacjęta`, `Imię`, `Nazwisko`, `Dolegliwość`) VALUES
 (1, 'Adolf', 'Hiller', 'Pęknięta czaszka');
+INSERT INTO `pacjęci` (`Id_pacjęta`, `Imię`, `Nazwisko`, `Dolegliwość`) VALUES 
+('2', 'Hans', 'Zemmerwerfer', 'Zapalenie błędnika (ucha wewnętrznego)'), 
+('3', 'Wieczysława', 'Werony', 'Zarażenie Covidem 19');
 
 --
 -- Indeksy dla zrzutów tabel
