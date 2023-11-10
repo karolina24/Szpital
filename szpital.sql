@@ -41,6 +41,9 @@ CREATE TABLE `lekarze` (
 
 INSERT INTO `lekarze` (`Id_lekarza`, `Imię`, `Nazwisko`, `Specjalizacja`, `Oddział`) VALUES
 (1, 'Jan', 'Semafor', 'Onkologia kliniczna', 'Onkologia');
+INSERT INTO `lekarze` (`Id_lekarza`, `Imię`, `Nazwisko`, `Specjalizacja`, `Oddział`) VALUES 
+('2', 'Krzysztof', 'Wichura', 'Choroby zakaźne', 'Chorobowy\r\n'), 
+('3', 'Wiesław', 'Maczyński', 'Chirurgia ogólna', 'Chirurgii');
 
 -- --------------------------------------------------------
 
