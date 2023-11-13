@@ -1,0 +1,24 @@
+{
+  "name": "systemy-wielowarstwowe---projekt-zaliczeniowy",
+  "version": "1.0.0",
+  "description": "Projekt zaliczeniowy z przedmiotu Systemy Wielowarstowe.",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karolina24/Szpital.git"
+  },
+  "author": "Karolina Maciąg, Leon Raczyński, Aleksander Kłos, Patryk Jabłoński",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karolina24/Szpital/issues"
+  },
+  "homepage": "https://github.com/karolina24/Szpital#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6"
+  }
+}

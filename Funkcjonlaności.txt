@@ -1,0 +1,6 @@
+- Dodawanie pacjenta
+- Usuwanie pacjenta
+- Wyswietlenie listy pacjentow z danego oddziału wraz ze wszystkimi ich informacjami
+- Wyswietlenie listy wszystkich osób przebywających na danym oddziale
+- Wyświetlanie listy lekarzy pracujących w szpitalu
+- Wyświetlanie listy pielęgniarek pracujących w szpitalu
