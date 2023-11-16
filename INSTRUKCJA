@@ -1,6 +1,11 @@
-1. Zainstalować na komputerze Node.js
-2. W folderze z projektem otworzyć konsole i wykonać polecenie: [npm init -y]
-3. Podmienić stworzone pliki package z tymi samymi plikami z GitHuba
-4. Znowu otiweramy konsolke w folderze głównym i wpisujemy polecenia: [npm install express] oraz [npm install sqlite3]
-5. Od teraz za każdym razem aby uruchomić stronę .html projektu trzeba wpisać w konsoli w folderze: [node server.mjs] a następnie w oknie przeglądarki wpisać [localhost:3000]
-6. Po wprowadzeniu zmian w pliku index.html styles.css czy script.mjs wystarczy odświeżyć stronę - nie trzeba powtarzać kroku #5.
+URUCHOMIENIE APLIKACJI:
+  1. Zainstalować na komputerze Node.js
+  2. W folderze z projektem otworzyć konsole i wykonać polecenie: [npm init -y]
+  3. Podmienić stworzone pliki package z tymi samymi plikami z GitHuba
+  4. Znowu otiweramy konsolke w folderze głównym i wpisujemy polecenia: [npm install express] oraz [npm install sqlite3]
+  5. Od teraz za każdym razem aby uruchomić stronę .html projektu trzeba wpisać w konsoli w folderze: [node server.mjs] a następnie w oknie przeglądarki wpisać [localhost:3000]
+  6. Po wprowadzeniu zmian w pliku index.html styles.css czy script.mjs wystarczy odświeżyć stronę - nie trzeba powtarzać kroku #5.
+
+EDYCJA I WGLĄD DO BAZY DANYCH:
+  1. Pobrać 'SQLite Studio' oraz 'DB Browser for SQLite'. Oba bardzo lekkie programy.
+  2. Aby załadować uzupełnioną bazę danych i jej szybką edycję należy otworzyć plik .db programem DB Browser for SQLite.
