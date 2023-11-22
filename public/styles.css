@@ -1,0 +1,67 @@
+body {
+    background-color: #f0f0f0 !important; 
+}
+ /*Pasek z logo*/
+.navbar-brand img {
+    height: 130px; 
+}
+
+.navbar {
+    background-color: #456d90;
+    margin-bottom: 50px;
+}
+
+/*formularz z dodaniem pacjenta*/
+#patientForm {
+    max-width: 400px; 
+    margin: 0 auto;  
+    padding: 20px;    
+  }
+
+/*formularz z usunięciem pacjenta*/
+
+ #patientFormDelete{
+    max-width: 400px; 
+    margin: 0 auto;  
+    padding: 20px;    
+  }
+
+/*grupra przycisków*/
+
+.btn-primary {
+    display: block;
+    margin: 0 auto;  
+  }
+
+.btn-custom {
+    align-items: center;
+    background-color: rgb(181, 214, 222); 
+    margin: 5px; 
+    border: 1px solid transparent; 
+    border-radius: .25rem; 
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.85);
+    display: inline-flex;
+    line-height: 4;
+    min-height: 3rem;
+  }
+
+.btn-custom:hover,
+.btn-custom:focus {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.btn-custom:hover {
+  transform: translateY(-1px);
+}
+
+.btn-custom:active {
+  background-color: #F0F0F1;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
