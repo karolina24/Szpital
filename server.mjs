@@ -69,7 +69,7 @@ app.post('/api/add-patient', (req, res) => {
 
 app.post('/api/delete-patient', (req, res) => {
   const { patient } = req.body;
-  db.run('DELETE FROM patient WHERE id_patient = ?', [patient], (err) => {
+  db.run('DELETE FROM patient WHERE personal_number = ?', [patient], (err) => {
     if (err) {
       res.status(500).json({ message: err.message });
       return;
