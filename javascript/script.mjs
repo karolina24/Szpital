@@ -12,13 +12,12 @@ window.addEventListener('load', () => {
             console.error('Request failed:', error);                    // Wyswietlenie błędów w konsoli
             return false;
         }
-    }
-
-    async function addPatient(name, surname, pesel, disease, hospitalWard) {
+        
+    }async function addPatient(name, surname, pesel, age, disease, hospitalWard) {
         const data = {                                                  // Stworzenie obiektu z danymi do przesłania do serwera
             name: name,
             surname: surname,
-            age: surname,
+            age: age,
             personal_number: pesel,
             disease: disease,
             hospital_ward: hospitalWard
@@ -48,23 +47,41 @@ window.addEventListener('load', () => {
         }
     }
 
+    async function submitForm() {
+        console.log('submitForm called');
+        const name = document.getElementById('name').value;
+        const surname = document.getElementById('surname').value;
+        const pesel = document.getElementById('pesel').value;
+        const age = document.getElementById('age').value;
+        const disease = document.getElementById('disease').value;
+        const hospitalWard = document.getElementById('hospitalWard').value;
+    
+        await addPatient(name, surname, pesel, age, disease, hospitalWard);
+        await showPatients(); //Pokazuje liste pacjentow po wpisaniu, mozna usunac
+    }
+
     async function showPatients() {
         try {
-            const response = await fetch('/api/select-patients');       // Wysłanie zapytania do serwera
-            if (!response.ok) {                                         // Sprawdzenie poprawności odpowiedzi serwera
-                throw new Error('Failed to show patients');             // Stworzenie nowego wyjatku/błędu     
+            const response = await fetch('/api/select-patients');
+            if (!response.ok) {
+                throw new Error('Failed to show patients');
             }
-            const data = await response.json();                         // Pobranie danych z odpowiedzi serwera do zmiennej 'data'
-            console.log('Request successful:', data);                   // Wyswietlenie danych w konsoli
+            const data = await response.json();
+            const listElement = document.getElementById("patientList");
+            if (listElement) {
+                const dataString = JSON.stringify(data, null, 2); // zmienia dane na tekst
+                listElement.innerHTML = `<pre>${dataString}</pre>`;
+            } else {
+                console.error('Element with ID "patientList" not found');
+            }
             return true;
-        } catch (error) {                                               // Złapanie wyjątku
-            console.error('Request failed:', error);                    // Wyswietlenie błędów w konsoli
+        } catch (error) {
+            console.error('Request failed:', error);
             return false;
         }
     }
-
     window.buttonTest = async function() {
-        await addPatient('Jan', 'Kowalski', '12345678901', 'Cukrzyca', '1');
+        await submitForm(); // pokazuje formularz
     };
 
     window.buttonShow = async function() {
@@ -74,6 +91,30 @@ window.addEventListener('load', () => {
         }
     };
 
-    connectDatabase();                                                  // Wywołanie funkcji połączenia z bazą danych
+    window.deletePatient = async function(){
+        try {
+            const peselToRemove = document.getElementById('peselToRemove').value;
+    
+            const response = await fetch('/api/delete-patient', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ patient: peselToRemove })
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to remove patient');
+            }
+    
+            const responseData = await response.json();
+            console.log('Patient removed successfully:', responseData);
+            await showPatients();
+        } catch (error) {
+            console.error('Request failed:', error);
+        }
+    }
+
+    connectDatabase();  // Wywołanie funkcji połączenia z bazą danych
 });
 
