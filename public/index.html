@@ -6,11 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <title>Szpital</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-    <button onclick="buttonTest()">Dodaj Janka do pacjentów</button>
-    <button onclick="buttonShow()">Pokaż pacjentów</button>
-    <script type="module" src="script.mjs"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!--Pasek z logo-->
+    <nav class="navbar  ">
+        <div class="container">
+          <a class="navbar-brand mx-auto" href="#">
+            <img src="Graphics\szpital-high-resolution-logo.png" alt="Your Logo" class="d-inline-block align-top">
+          </a>
+        </div>
+    </nav>
+      
+<!--Przyciski-->
+<div class="container">
+    <div class="btn-group btn-group-center d-flex justify-content-center ">
+          <button type="button" class="btn btn-custom " data-toggle="collapse" data-target="#patientForm">Dodaj pacjenta</button>
+          <button type="button" class="btn btn-custom" data-toggle="collapse" data-target="#patientFormDelete">Usuń pacjenta</button>
+          <button type="button" onclick="buttonShow()" class="btn btn-custom" data-toggle="collapse" data-target="#demo-container">Pokaż pacjentów</button>
+         <!--Jescze nie ma-->
+          <button type="button" class="btn btn-custom" data-toggle="collapse" data-target="">Pokaż lekarzy</button>
+          <button type="button" class="btn btn-custom" data-toggle="collapse" data-target="">Pokaż pielęgniarki</button>
+    </div>
+</div>
+
+<!--Formularz dodania pacjenta do bazy danych-->
+<form class="collapse" id="patientForm">
+    <div class="form-group"></div>
+    <label for="name">Imię:</label>
+    <input type="text" id="name" name="name" class="form-control" required><br>
+
+    <label for="surname">Nazwisko:</label>
+    <input type="text" id="surname" name="surname" class="form-control"  required><br>
+
+    <label for="pesel">PESEL:</label>
+    <input type="text" id="pesel" name="pesel" class="form-control"  required><br>
+
+    <label for="age">Wiek:</label>
+    <input type="text" id="age" name="age"  class="form-control"  required><br>
+
+    <label for="disease">Choroba:</label>
+    <input type="text" id="disease" name="disease" class="form-control"   required><br>
+
+    <label for="hospitalWard">Oddział:</label>
+    <input type="text" id="hospitalWard" name="hospitalWard" class="form-control"  required><br>
+    <button onclick="buttonTest()"  class="btn btn-custom btn-lg "  >Dodaj Pacjenta</button>
+</form>
+
+<!--Formularz usunięcia pacjenta-->
+<form class="collapse"  id="patientFormDelete">
+    <div class="form-group"></div>
+    <label for="peselToRemove">PESEL:</label>
+    <input type="text" id="peselToRemove" name="peselToRemove" class="form-control" required><br>
+    <button onclick="deletePatient()"  class="btn btn-custom btn-lg ">Usuń Pacjenta</button>
+</form>
+
+<!--Wyświetlenie listy pacjentów-->
+<section class="collapse" id="demo-container">
+    <div id="patientList"></div>
+</section>
+    
+
+    
+<script type="module" src="script.mjs"defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </body>
 </html>
