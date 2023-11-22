@@ -11,9 +11,10 @@ window.addEventListener('load', () => {
         } catch (error) {                                               // Złapanie wyjątku
             console.error('Request failed:', error);                    // Wyswietlenie błędów w konsoli
             return false;
-        }
-        
-    }async function addPatient(name, surname, pesel, age, disease, hospitalWard) {
+        }   
+    }
+
+    async function addPatient(name, surname, pesel, age, disease, hospitalWard) {
         const data = {                                                  // Stworzenie obiektu z danymi do przesłania do serwera
             name: name,
             surname: surname,
@@ -62,39 +63,53 @@ window.addEventListener('load', () => {
 
     async function showPatients() {
         try {
-            const response = await fetch('/api/select-patients');
-            if (!response.ok) {
-                throw new Error('Failed to show patients');
+            const response = await fetch('/api/select-patients');       // Wysłanie zapytania do serwera
+            if (!response.ok) {                                         // Jeżeli odpowiedź nie jest poprawna
+                throw new Error('Failed to show patients');             // Stwórz nowy komunikat błędu
             }
-            const data = await response.json();
-            const listElement = document.getElementById("patientList");
-            if (listElement) {
-                const dataString = JSON.stringify(data, null, 2); // zmienia dane na tekst
-                listElement.innerHTML = `<pre>${dataString}</pre>`;
-            } else {
-                console.error('Element with ID "patientList" not found');
-            }
-            return true;
-        } catch (error) {
-            console.error('Request failed:', error);
-            return false;
+            const data = await response.json();                         // Poczekaj na dane z odpowiedzi serwera
+            return data;                                                // Zwróć dane
+        } catch (error) {                                               // Złapanie błędu
+            console.error('Request failed:', error);                    // Wyświetl błędu w konsoli
+            return false;                                               // Zwróć False
         }
     }
+
     window.buttonTest = async function() {
         await submitForm(); // pokazuje formularz
     };
 
     window.buttonShow = async function() {
-        const patients = await showPatients();
-        for(let i = 0; i < patients.length; i++) {
-            console.log(patients[i]);
+        const table = document.querySelector('#patientsTable');         // Pobranie tabeli jako element ht
+        table.style.display = 'block';                                  // Zmienia wartość CSS tabeli
+        try {
+            const patients = await showPatients();                      // Czekanie na wykonanie i przypisanie danych zwracanych przez funkcje showPatients()
+            if (patients) {                                             // Jeśli funckja zwraca dane lub jest True
+                patients.message.forEach((patient) => {                 // Pętla dla każdego istniejącego pacjenta (z wartością message bo tak zwraca serwer)
+                    const row = document.createElement('tr');           // Stworzenie nowego wiersza i przypisanie do zmiennej
+                    row.innerHTML = `
+                        <td>${patient.id_patient}</td>
+                        <td>${patient.name}</td>
+                        <td>${patient.surname}</td>
+                        <td>${patient.age}</td>
+                        <td>${patient.personal_number}</td>
+                        <td>${patient.disease}</td>
+                        <td>${patient.hospital_ward}</td>
+                    `;
+                    table.appendChild(row);                             // Dodaj wiersz do tabeli
+                });
+            } else {
+                console.log('No patient records found.');               // Wyświetlenie komunikatu o braku danych
+            }
+        } catch (error) {                                               // Złapanie wyjątku
+            console.error('Error retrieving patient records:', error);  // Wyswietlenie błędów w konsoli
         }
-    };
+    }
+    
 
     window.deletePatient = async function(){
         try {
             const peselToRemove = document.getElementById('peselToRemove').value;
-    
             const response = await fetch('/api/delete-patient', {
                 method: 'POST',
                 headers: {
@@ -109,7 +124,7 @@ window.addEventListener('load', () => {
     
             const responseData = await response.json();
             console.log('Patient removed successfully:', responseData);
-            await showPatients();
+            // await showPatients();
         } catch (error) {
             console.error('Request failed:', error);
         }
