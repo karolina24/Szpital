@@ -71,16 +71,3 @@ body {
   display: none;
   margin-left: 5px;
 }
-
-#patientsTable tr {
-  border: 1px solid black;
-}
-
-#patientsTable td:not(:last-child) {
-  border-right: 1px solid red;
-}
-
-#patientsTable th {
-  text-align: center;
-  border-right: 1px solid black;
-}
