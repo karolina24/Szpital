@@ -74,7 +74,6 @@ app.post('/api/delete-patient', (req, res) => {
       res.status(500).json({ message: err.message });
       return;
     }
-    
     else {
       res.json({ message: 'Patient was deleted!' });
     }
