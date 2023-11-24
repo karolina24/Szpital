@@ -91,9 +91,6 @@ app.get('/api/select-patients', (req, res) => {
           return;
         }
         
-        // rows.forEach(row => {
-        //   res.json({ message: row });
-        // });
         res.json({ message: rows });
   });
 });
@@ -105,9 +102,7 @@ app.get('/api/select-doctors', (req, res) => {
       return;
     }
     
-    rows.forEach(row => {
-      res.json({ message: row });
-    });
+    res.json({ message: rows });
   });
 });
 
@@ -118,9 +113,7 @@ app.get('/api/select-nurses', (req, res) => {
       return;
     }
     
-    rows.forEach(row => {
-      res.json({ message: row });
-    });
+      res.json({ message: rows });
   });
 });
 
