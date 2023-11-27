@@ -96,7 +96,11 @@ app.get('/api/select-patients', (req, res) => {
 });
 
 app.get('/api/select-doctors', (req, res) => {
-  db.all('SELECT * FROM doctor', (err, rows) => {
+  db.all(`SELECT doctor.id_doctor, doctor.name, doctor.surname, doctor.specialization, hospitalward.name
+          AS hospital_ward
+          FROM doctor
+          JOIN hospitalward
+          ON doctor.hospitalward_id_hospital_ward = hospitalward.id_hospital_ward`, (err, rows) => {
     if (err) {
       res.status(500).json({ message: err.message });
       return;
@@ -107,7 +111,11 @@ app.get('/api/select-doctors', (req, res) => {
 });
 
 app.get('/api/select-nurses', (req, res) => {
-  db.all('SELECT * FROM nurse', (err, rows) => {
+  db.all(`SELECT nurse.id_nurse, nurse.name, nurse.surname, hospitalward.name
+          AS hospital_ward
+          FROM nurse
+          JOIN hospitalward
+          ON nurse.hospitalward_id_hospital_ward = hospitalward.id_hospital_ward`, (err, rows) => {
     if (err) {
       res.status(500).json({ message: err.message });
       return;
