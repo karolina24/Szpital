@@ -34,3 +34,5 @@ CREATE TABLE patient (
     PRIMARY KEY (id_patient, hospitalward_id_hospital_ward),
     FOREIGN KEY (hospitalward_id_hospital_ward) REFERENCES hospitalward (id_hospital_ward)
 );
+CREATE VIEW patient_view as SELECT patient.name, patient.surname, hospitalward.name as hospitalward 
+FROM patient INNER JOIN hospitalward ON patient.hospitalward_id_hospital_ward=hospitalward.id_hospital_ward;
