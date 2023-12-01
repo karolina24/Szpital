@@ -125,53 +125,50 @@ app.get('/api/select-nurses', (req, res) => {
   });
 });
 
-app.get('/api/select-patients-from-ward', (req, res) => {
-  const { hospital_ward } = req.body;
-  db.all(`SELECT id_patient, name, surname, age, personal_number, disease
+app.post('/api/select-ward', (req, res) => {
+  const { hospitalWard } = req.body;
+  
+  const data = {
+    patients: [],
+    nurses: [],
+    doctors: [],
+  };
+
+  db.all(`SELECT name, surname, age, personal_number, disease
           FROM patient
-          WHERE hospitalward_id_hospital_ward = ?`, [hospital_ward], (err, rows) => {
+          WHERE hospitalward_id_hospital_ward = ?`, [hospitalWard], (err, patientRows) => {
     if (err) {
       res.status(500).json({ message: err.message });
       return;
     }
     
-    rows.forEach(row => {
-      res.json({ message: row });
-    });
-  });
-})
+    data.patients = patientRows;
 
-app.get('/api/select-nurses-from-ward', (req, res) => {
-  const { hospital_ward } = req.body;
-  db.all(`SELECT id_nurse, name, surname
-          FROM nurse
-          WHERE hospitalward_id_hospital_ward = ?`, [hospital_ward], (err, rows) => {
-    if (err) {
-      res.status(500).json({ message: err.message });
-      return;
-    }
-    
-    rows.forEach(row => {
-      res.json({ message: row });
-    });
-  });
-})
+    db.all(`SELECT name, surname
+            FROM nurse
+            WHERE hospitalward_id_hospital_ward = ?`, [hospitalWard], (err, nurseRows) => {
+      if (err) {
+        res.status(500).json({ message: err.message });
+        return;
+      }
+      
+      data.nurses = nurseRows;
 
-app.get('/api/select-doctor-from-ward', (req, res) => {
-  const { hospital_ward } = req.body;
-  db.all(`SELECT id_doctor, name, surname, specialization
-          FROM doctor
-          WHERE hospitalward_id_hospital_ward = ?`, [hospital_ward], (err, rows) => {
-    if (err) {
-      res.status(500).json({ message: err.message });
-      return;
-    }
-    
-    rows.forEach(row => {
-      res.json({ message: row });
+      db.all(`SELECT name, surname, specialization
+              FROM doctor
+              WHERE hospitalward_id_hospital_ward = ?`, [hospitalWard], (err, doctorRows) => {
+        if (err) {
+          res.status(500).json({ message: err.message });
+          return;
+        }
+        
+        data.doctors = doctorRows;
+
+        res.json({ message: data });
+      });
     });
   });
-})
+});
 
 // Uruchomienie serwera
 app.listen(port, () => {
