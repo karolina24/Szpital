@@ -1,3 +1,12 @@
+document.addEventListener('DOMContentLoaded', function () { //ustawienie przycisku na aktywny
+    var addPatientButtons = document.querySelectorAll('.btn');
+    addPatientButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            button.classList.toggle('pressed');
+        });
+    });
+});
+
 window.addEventListener('load', () => {
     async function connectDatabase() {                                  // Połaczenie z baza danych
         try {
