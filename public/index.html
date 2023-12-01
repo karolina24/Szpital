@@ -30,6 +30,7 @@
             <button type="button" onclick="buttonShow()" class="btn btn-custom" data-toggle="collapse" data-target="#showPatients" id="active" >Pokaż pacjentów</button>
             <button type="button"  onclick="buttonShowDoctors()" class="btn btn-custom" data-toggle="collapse" data-target="#showDoctors" id="active">Pokaż lekarzy</button>
             <button type="button" onclick="buttonShowNurses()" class="btn btn-custom" data-toggle="collapse" data-target="#showNurses" id="active">Pokaż pielęgniarki</button>
+            <button type="button" onclick="buttonShowHospitalWard()" class="btn btn-custom" data-toggle="collapse" data-target="#showHospitalWard" id="active">Pokaż oddział</button>
         </div>
     </div>
 
@@ -66,7 +67,7 @@
 
     <!--Wyświetlenie listy pacjentów-->
     <form class="collapse"  id="showPatients">
-    <div class="container mt-5  row justify-content-center">
+        <div class="container mt-5 row justify-content-center">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="patientsList">
@@ -117,7 +118,7 @@
 
     <!--Wyświetlenie listy lekarzy-->
     <form class="collapse"  id="showDoctors">
-        <div class="container mt-5  row justify-content-center">
+        <div class="container mt-5 row justify-content-center">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="doctorsTable">
@@ -131,8 +132,55 @@
                                     <th scope="col">Oddział</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!--Wyświetlenie listy osób z danego oddziału-->
+    <form class="collapse"  id="showHospitalWard">
+        <div class="container mt-5 row justify-content-center">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="doctorsTable">
+                        <table class="table table-bordered table-hover " id="hospitalWardDoctorsTable">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Lekarze</th>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Imię</th>
+                                    <th scope="col">Nazwisko</th>
+                                    <th scope="col">Specjalizacja</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <table class="table table-bordered table-hover " id="hospitalWardNursesTable">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Pielęgniarki</th>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Imię</th>
+                                    <th scope="col">Nazwisko</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <table class="table table-bordered table-hover " id="hospitalWardPatientsTable">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Pacjenci</th>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Imię</th>
+                                    <th scope="col">Nazwisko</th>
+                                    <th scope="col">Wiek</th>
+                                    <th scope="col">PESEL</th>
+                                    <th scope="col">Rozpoznanie</th>
+                                </tr>
+                            </thead>
                         </table>
                     </div>
                 </div>
