@@ -59,9 +59,19 @@ body {
 }
 
 .btn-custom:active {
-  background-color: #F0F0F1;
+  background-color: #dbdbdc;
   border-color: rgba(0, 0, 0, 0.15);
   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
+
+.btn-custom.pressed {
+  background-color: #b4d3f4;
+  font-weight: bold;
+  color:black;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px, 0 0 0 0.2rem rgba(0, 123, 255, 0.25); 
   color: rgba(0, 0, 0, 0.65);
   transform: translateY(0);
 }

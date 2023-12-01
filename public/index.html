@@ -17,7 +17,7 @@
     <nav class="navbar  ">
         <div class="container">
           <a class="navbar-brand mx-auto" href="#">
-            <img src="Graphics\szpital-high-resolution-logo.png" alt="Your Logo" class="d-inline-block align-top">
+            <img src="Graphics\szpital-high-resolution-logo.png"  class="d-inline-block align-top">
           </a>
         </div>
     </nav>
@@ -26,11 +26,10 @@
     <div class="container">
         <div class="btn-group btn-group-center d-flex justify-content-center ">
             <button type="button" class="btn btn-custom " data-toggle="collapse" data-target="#patientForm">Dodaj pacjenta</button>
-            <button type="button" class="btn btn-custom" data-toggle="collapse" data-target="#patientFormDelete">Usuń pacjenta</button>
-            <button type="button" onclick="buttonShow()" class="btn btn-custom" data-toggle="collapse" data-target="#showPatients">Pokaż pacjentów</button>
-            <!--Jescze nie ma-->
-            <button type="button"  onclick="buttonShowDoctors()" class="btn btn-custom" data-toggle="collapse" data-target="#showDoctors">Pokaż lekarzy</button>
-            <button type="button" onclick="buttonShowNurses()" class="btn btn-custom" data-toggle="collapse" data-target="#showNurses">Pokaż pielęgniarki</button>
+            <button type="button" class="btn btn-custom" data-toggle="collapse" data-target="#patientFormDelete" id="active">Usuń pacjenta</button>
+            <button type="button" onclick="buttonShow()" class="btn btn-custom" data-toggle="collapse" data-target="#showPatients" id="active" >Pokaż pacjentów</button>
+            <button type="button"  onclick="buttonShowDoctors()" class="btn btn-custom" data-toggle="collapse" data-target="#showDoctors" id="active">Pokaż lekarzy</button>
+            <button type="button" onclick="buttonShowNurses()" class="btn btn-custom" data-toggle="collapse" data-target="#showNurses" id="active">Pokaż pielęgniarki</button>
         </div>
     </div>
 
@@ -54,7 +53,7 @@
 
         <label for="hospitalWard">Oddział:</label>
         <input type="text" id="hospitalWard" name="hospitalWard" class="form-control"  required><br>
-        <button onclick="buttonTest()"  class="btn btn-custom btn-lg "  >Dodaj Pacjenta</button>
+        <button onclick="buttonTest()"  class="btn btn-custom btn-lg" >Dodaj Pacjenta</button>
     </form>
 
     <!--Formularz usunięcia pacjenta-->
@@ -67,11 +66,11 @@
 
     <!--Wyświetlenie listy pacjentów-->
     <form class="collapse"  id="showPatients">
-    <div class="container mt-5">
+    <div class="container mt-5  row justify-content-center">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="patientsList">
-                    <table class="table table-bordered table-hover " id="patientsTable">
+                    <table class="table table-bordered table-hover  mx-auto " id="patientsTable">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Id</th>
@@ -94,7 +93,7 @@
 
     <!--Wyświetlenie listy pielęgniarek-->
     <form class="collapse"  id="showNurses">
-        <div class="container mt-5">
+        <div class="container mt-5 row justify-content-center">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="nursesTable">
@@ -118,7 +117,7 @@
 
     <!--Wyświetlenie listy lekarzy-->
     <form class="collapse"  id="showDoctors">
-        <div class="container mt-5">
+        <div class="container mt-5  row justify-content-center">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="doctorsTable">
