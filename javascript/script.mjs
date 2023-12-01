@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () { //ustawienie przycisku na aktywny
-    var addPatientButtons = document.querySelectorAll('.btn');
+    let addPatientButtons = document.querySelectorAll('.btn');
     addPatientButtons.forEach(function (button) {
         button.addEventListener('click', function () {
             button.classList.toggle('pressed');
@@ -151,48 +151,47 @@ window.addEventListener('load', () => {
 
  //Pokazuje lekarzy
 
- async function showDoctors() {
-    try {
-        const response = await fetch('/api/select-doctors');       // Wysłanie zapytania do serwera
-        if (!response.ok) {                                         // Jeżeli odpowiedź nie jest poprawna
-            throw new Error('Failed to show doctors');             // Stwórz nowy komunikat błędu
+    async function showDoctors() {
+        try {
+            const response = await fetch('/api/select-doctors');       // Wysłanie zapytania do serwera
+            if (!response.ok) {                                         // Jeżeli odpowiedź nie jest poprawna
+                throw new Error('Failed to show doctors');             // Stwórz nowy komunikat błędu
+            }
+            const data = await response.json();                         // Poczekaj na dane z odpowiedzi serwera
+            return data;                                                // Zwróć dane
+        } catch (error) {                                               // Złapanie błędu
+            console.error('Request failed:', error);                    // Wyświetl błędu w konsoli
+            return false;                                               // Zwróć False
         }
-        const data = await response.json();                         // Poczekaj na dane z odpowiedzi serwera
-        return data;                                                // Zwróć dane
-    } catch (error) {                                               // Złapanie błędu
-        console.error('Request failed:', error);                    // Wyświetl błędu w konsoli
-        return false;                                               // Zwróć False
     }
-}
-window.buttonShowDoctors = async function() {
-    const table = document.querySelector('#doctorsTable');         // Pobranie tabeli jako element ht
-    table.style.display = 'block';                                  // Zmienia wartość CSS tabeli
-    try {
-        const doctors = await showDoctors();                      // Czekanie na wykonanie i przypisanie danych zwracanych przez funkcje showPatients()
-        if (doctors) {                                             // Jeśli funckja zwraca dane lub jest True
-            doctors.message.forEach((doctor) => {                 // Pętla dla każdego istniejącego pacjenta (z wartością message bo tak zwraca serwer)
-                const row = document.createElement('tr');           // Stworzenie nowego wiersza i przypisanie do zmiennej
-                row.innerHTML = `
-                    <td>${doctor.id_doctor}</td>
-                    <td>${doctor.name}</td>
-                    <td>${doctor.surname}</td>
-                    <td>${doctor.specialization}</td>
-                    <td>${doctor.hospital_ward}</td>
-                `;
-                table.appendChild(row);                             // Dodaj wiersz do tabeli
-            });
-        } else {
-            console.log('No doctors records found.');               // Wyświetlenie komunikatu o braku danych
+    window.buttonShowDoctors = async function() {
+        const table = document.querySelector('#doctorsTable');         // Pobranie tabeli jako element ht
+        table.style.display = 'block';                                  // Zmienia wartość CSS tabeli
+        try {
+            const doctors = await showDoctors();                      // Czekanie na wykonanie i przypisanie danych zwracanych przez funkcje showPatients()
+            if (doctors) {                                             // Jeśli funckja zwraca dane lub jest True
+                doctors.message.forEach((doctor) => {                 // Pętla dla każdego istniejącego pacjenta (z wartością message bo tak zwraca serwer)
+                    const row = document.createElement('tr');           // Stworzenie nowego wiersza i przypisanie do zmiennej
+                    row.innerHTML = `
+                        <td>${doctor.id_doctor}</td>
+                        <td>${doctor.name}</td>
+                        <td>${doctor.surname}</td>
+                        <td>${doctor.specialization}</td>
+                        <td>${doctor.hospital_ward}</td>
+                    `;
+                    table.appendChild(row);                             // Dodaj wiersz do tabeli
+                });
+            } else {
+                console.log('No doctors records found.');               // Wyświetlenie komunikatu o braku danych
+            }
+        } catch (error) {                                               // Złapanie wyjątku
+            console.error('Error retrieving doctors records:', error);  // Wyswietlenie błędów w konsoli
         }
-    } catch (error) {                                               // Złapanie wyjątku
-        console.error('Error retrieving doctors records:', error);  // Wyswietlenie błędów w konsoli
     }
-}
+
     window.buttonTest = async function() {
         await submitForm(); // pokazuje formularz
     };
-
-    
 
     window.deletePatient = async function(){
         try {
@@ -216,6 +215,78 @@ window.buttonShowDoctors = async function() {
             console.error('Request failed:', error);
         }
     }
+
+    async function showHospitalWard() {
+        try {
+            const hospitalWardName = 1;
+            const response = await fetch('/api/select-ward', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ hospitalWard: hospitalWardName })
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to select hospital ward');
+            }
+    
+            const responseData = await response.json();
+            // console.log(responseData);
+            return responseData;
+        } catch (error) {
+            console.error('Request failed:', error);
+        }
+    }
+
+    window.buttonShowHospitalWard = async function() {
+        const doctorsTable = document.querySelector('#hospitalWardDoctorsTable');    
+        const nursesTable = document.querySelector('#hospitalWardNursesTable');
+        const patientsTable = document.querySelector('#hospitalWardPatientsTable');     
+        doctorsTable.style.display = 'block';  
+        nursesTable.style.display = 'block';     
+        patientsTable.style.display = 'block';                          
+        try {
+            const hospitalWard = await showHospitalWard();                      
+            if (hospitalWard) {                                          
+                hospitalWard.message.doctors.forEach((doctor) => {             
+                    const row = document.createElement('tr');          
+                    row.innerHTML = `
+                        <td>${doctor.name}</td>
+                        <td>${doctor.surname}</td>
+                        <td>${doctor.specialization}</td>
+                    `;
+                    doctorsTable.appendChild(row);                             
+                });
+
+                hospitalWard.message.nurses.forEach((nurse) => {             
+                    const row = document.createElement('tr');          
+                    row.innerHTML = `
+                        <td>${nurse.name}</td>
+                        <td>${nurse.surname}</td>
+                    `;
+                    nursesTable.appendChild(row);                             
+                });
+
+                hospitalWard.message.patients.forEach((patient) => {             
+                    const row = document.createElement('tr');          
+                    row.innerHTML = `
+                        <td>${patient.name}</td>
+                        <td>${patient.surname}</td>
+                        <td>${patient.age}</td>
+                        <td>${patient.personal_number}</td>
+                        <td>${patient.disease}</td>
+                    `;
+                    patientsTable.appendChild(row);                             
+                });
+            } else {
+                console.log('No records found.');               
+            }
+        } catch (error) {                                               
+            console.error('Error retrieving doctors records:', error);  
+        }
+    }
+
 
     connectDatabase();  // Wywołanie funkcji połączenia z bazą danych
 });
