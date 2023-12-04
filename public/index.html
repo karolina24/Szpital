@@ -28,7 +28,7 @@
             <button type="button" class="btn btn-custom " data-toggle="collapse" data-target="#patientForm">Dodaj pacjenta</button>
             <button type="button" class="btn btn-custom" data-toggle="collapse" data-target="#patientFormDelete" id="active">Usuń pacjenta</button>
             <button type="button" onclick="buttonShow()" class="btn btn-custom" data-toggle="collapse" data-target="#showPatients" id="active" >Pokaż pacjentów</button>
-            <button type="button"  onclick="buttonShowDoctors()" class="btn btn-custom" data-toggle="collapse" data-target="#showDoctors" id="active">Pokaż lekarzy</button>
+            <button type="button" onclick="buttonShowDoctors()" class="btn btn-custom" data-toggle="collapse" data-target="#showDoctors" id="active">Pokaż lekarzy</button>
             <button type="button" onclick="buttonShowNurses()" class="btn btn-custom" data-toggle="collapse" data-target="#showNurses" id="active">Pokaż pielęgniarki</button>
             <button type="button" onclick="buttonShowHospitalWard()" class="btn btn-custom" data-toggle="collapse" data-target="#showHospitalWard" id="active">Pokaż oddział</button>
         </div>
@@ -47,7 +47,7 @@
         <input type="text" id="pesel" name="pesel" class="form-control"  required><br>
 
         <label for="age">Wiek:</label>
-        <input type="text" id="age" name="age"  class="form-control"  required><br>
+        <input type="text" id="age" name="age" class="form-control"  required><br>
 
         <label for="disease">Choroba:</label>
         <input type="text" id="disease" name="disease" class="form-control"   required><br>
@@ -140,7 +140,7 @@
     </form>
 
     <!--Wyświetlenie listy osób z danego oddziału-->
-    <form class="collapse" id="showHospitalWard">
+    <!-- <form class="collapse" id="showHospitalWard">
         <div id="selectHospitalWardForm">
             <label for="selectHospitalWard">Wybierz oddział:</label>
             <select id="selectHospitalWard" name="selectHospitalWard">
@@ -172,7 +172,6 @@
                         <table class="table table-bordered table-hover " id="hospitalWardNursesTable">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">Id</th>
                                     <th scope="col">Imię</th>
                                     <th scope="col">Nazwisko</th>
                                     <th scope="col">Oddział</th>
@@ -197,7 +196,65 @@
                 </div>
             </div>
         </div>
+    </form> -->
+
+    <form class="collapse" id="showHospitalWard">
+        <div id="selectHospitalWardForm">
+            <label for="selectHospitalWard">Wybierz oddział:</label>
+            <select id="selectHospitalWard" name="selectHospitalWard">
+                <option value="1">Kardiologia</option>
+                <option value="2">Chirurgia Ogólna</option>
+                <option value="3">Pulmonologia</option>
+                <option value="4">Otolaryngologia</option>
+                <option value="5">Ortopedia</option>
+            </select>
+            <button type="button" class=" btn-click" onclick="buttonShowHospitalWard()">Pokaż informacje o oddziale</button>
+        </div>
     </form>
+        <div class="row justify-content-center">
+            <div class="doctorsTable">
+                <table class="table table-bordered table-hover " id="hospitalWardDoctorsTable">
+                    <thead class="thead-dark">
+                        <!-- <tr>
+                            <th scope="col">Lekarze</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Imię</th>
+                            <th scope="col">Nazwisko</th>
+                            <th scope="col">Specjalizacja</th>
+                        </tr> -->
+                    </thead>
+                </table>
+
+                <table class="table table-bordered table-hover " id="hospitalWardNursesTable">
+                    <thead class="thead-dark">
+                        <!-- <tr>
+                            <th scope="col">Pielęgniarki</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Imię</th>
+                            <th scope="col">Nazwisko</th>
+                            <th scope="col">Oddział</th>
+                        </tr> -->
+                    </thead>
+                </table>
+                <table class="table table-bordered table-hover " id="hospitalWardPatientsTable">
+                    <thead class="thead-dark">
+                        <!-- <tr>
+                            <th scope="col">Pacjenci</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Imię</th>
+                            <th scope="col">Nazwisko</th>
+                            <th scope="col">Wiek</th>
+                            <th scope="col">PESEL</th>
+                            <th scope="col">Rozpoznanie</th>
+                        </tr> -->
+                    </thead>
+                </table>
+            </div>
+        </div>
+   
     
 <script type="module" src="script.mjs"defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
