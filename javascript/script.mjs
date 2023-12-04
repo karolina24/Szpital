@@ -218,21 +218,20 @@ window.addEventListener('load', () => {
 
     async function showHospitalWard() {
         try {
-            const hospitalWardName = 1;
+            const selectedHospitalWard = document.getElementById('selectHospitalWard').value;
             const response = await fetch('/api/select-ward', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ hospitalWard: hospitalWardName })
+                body: JSON.stringify({ hospitalWard: selectedHospitalWard })
             });
-    
+
             if (!response.ok) {
                 throw new Error('Failed to select hospital ward');
             }
-    
+
             const responseData = await response.json();
-            // console.log(responseData);
             return responseData;
         } catch (error) {
             console.error('Request failed:', error);
@@ -249,6 +248,10 @@ window.addEventListener('load', () => {
         try {
             const hospitalWard = await showHospitalWard();                      
             if (hospitalWard) {                                          
+                doctorsTable.innerHTML = ''; 
+                nursesTable.innerHTML = ''; 
+                patientsTable.innerHTML = ''; 
+
                 hospitalWard.message.doctors.forEach((doctor) => {             
                     const row = document.createElement('tr');          
                     row.innerHTML = `
