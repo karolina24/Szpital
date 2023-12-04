@@ -241,7 +241,13 @@ window.addEventListener('load', () => {
     window.buttonShowHospitalWard = async function() {
         const doctorsTable = document.querySelector('#hospitalWardDoctorsTable');    
         const nursesTable = document.querySelector('#hospitalWardNursesTable');
-        const patientsTable = document.querySelector('#hospitalWardPatientsTable');     
+        const patientsTable = document.querySelector('#hospitalWardPatientsTable');
+        const doctorTitleRow = document.createElement('tr');
+        const doctorInforRow = document.createElement('tr');
+        const nursesTitleRow = document.createElement('tr');
+        const nursesInforRow = document.createElement('tr');
+        const patientsTitleRow = document.createElement('tr');
+        const patientsInforRow = document.createElement('tr');
         doctorsTable.style.display = 'block';  
         nursesTable.style.display = 'block';     
         patientsTable.style.display = 'block';                          
@@ -251,6 +257,15 @@ window.addEventListener('load', () => {
                 doctorsTable.innerHTML = ''; 
                 nursesTable.innerHTML = ''; 
                 patientsTable.innerHTML = ''; 
+
+                doctorTitleRow.innerHTML = `<th>Lekarz</th>`;
+                doctorInforRow.innerHTML = `
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Specjalizacja</th>
+                `;
+                doctorsTable.appendChild(doctorTitleRow);
+                doctorsTable.appendChild(doctorInforRow);  
 
                 hospitalWard.message.doctors.forEach((doctor) => {             
                     const row = document.createElement('tr');          
@@ -262,6 +277,14 @@ window.addEventListener('load', () => {
                     doctorsTable.appendChild(row);                             
                 });
 
+                nursesTitleRow.innerHTML = `<th>Nurses</th>`;
+                nursesInforRow.innerHTML = `
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                `;
+                nursesTable.appendChild(nursesTitleRow);
+                nursesTable.appendChild(nursesInforRow);
+
                 hospitalWard.message.nurses.forEach((nurse) => {             
                     const row = document.createElement('tr');          
                     row.innerHTML = `
@@ -270,6 +293,17 @@ window.addEventListener('load', () => {
                     `;
                     nursesTable.appendChild(row);                             
                 });
+
+                patientsTitleRow.innerHTML = `<th>Pacjenci</th>`;
+                patientsInforRow.innerHTML = `
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Wiek</th>
+                    <th>PESEL</th>
+                    <th>Rozpoznanie</th>
+                `;
+                patientsTable.appendChild(patientsTitleRow);
+                patientsTable.appendChild(patientsInforRow);
 
                 hospitalWard.message.patients.forEach((patient) => {             
                     const row = document.createElement('tr');          
@@ -293,4 +327,3 @@ window.addEventListener('load', () => {
 
     connectDatabase();  // Wywołanie funkcji połączenia z bazą danych
 });
-
