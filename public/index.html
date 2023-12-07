@@ -52,8 +52,17 @@
         <label for="disease">Choroba:</label>
         <input type="text" id="disease" name="disease" class="form-control"   required><br>
 
-        <label for="hospitalWard">Oddział:</label>
-        <input type="text" id="hospitalWard" name="hospitalWard" class="form-control"  required><br>
+        <label for="hospitalWard"></label>
+
+        <label for="selectHospitalWard">Oddział:</label>
+            <select id="hospitalWard"  name="hospitalWard" class="form-control">
+                <option value="1">Kardiologia</option>
+                <option value="2">Chirurgia Ogólna</option>
+                <option value="3">Pulmonologia</option>
+                <option value="4">Otolaryngologia</option>
+                <option value="5">Ortopedia</option>
+            </select>
+
         <button onclick="buttonTest()"  class="btn btn-custom btn-lg" >Dodaj Pacjenta</button>
     </form>
 
@@ -95,7 +104,7 @@
     <!--Wyświetlenie listy pielęgniarek-->
     <form class="collapse"  id="showNurses">
         <div class="container mt-5 row justify-content-center">
-            <div class="row justify-content-center">
+            <div class=" justify-content-center">
                 <div class="col-md-8">
                     <div class="nursesTable">
                         <table class="table table-bordered table-hover " id="nursesTable">
@@ -119,7 +128,7 @@
     <!--Wyświetlenie listy lekarzy-->
     <form class="collapse"  id="showDoctors">
         <div class="container mt-5 row justify-content-center">
-            <div class="row justify-content-center">
+            <div class=" justify-content-center">
                 <div class="col-md-8">
                     <div class="doctorsTable">
                         <table class="table table-bordered table-hover " id="doctorsTable">
@@ -139,65 +148,7 @@
         </div>
     </form>
 
-    <!--Wyświetlenie listy osób z danego oddziału-->
-    <!-- <form class="collapse" id="showHospitalWard">
-        <div id="selectHospitalWardForm">
-            <label for="selectHospitalWard">Wybierz oddział:</label>
-            <select id="selectHospitalWard" name="selectHospitalWard">
-                <option value="1">Kardiologia</option>
-                <option value="2">Chirurgia Ogólna</option>
-                <option value="3">Pulmonologia</option>
-                <option value="4">Otolaryngologia</option>
-                <option value="5">Ortopedia</option>
-            </select>
-            <button type="button" class=" btn-click" onclick="buttonShowHospitalWard()">Pokaż informacje o oddziale</button>
-        </div>
-        <div class="container mt-5 row justify-content-center">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="doctorsTable">
-                        <table class="table table-bordered table-hover " id="hospitalWardDoctorsTable">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">Lekarze</th>
-                                </tr>
-                                <tr>
-                                    <th scope="col">Imię</th>
-                                    <th scope="col">Nazwisko</th>
-                                    <th scope="col">Specjalizacja</th>
-                                </tr>
-                            </thead>
-                        </table>
-
-                        <table class="table table-bordered table-hover " id="hospitalWardNursesTable">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">Imię</th>
-                                    <th scope="col">Nazwisko</th>
-                                    <th scope="col">Oddział</th>
-                                </tr>
-                            </thead>
-                        </table>
-                        <table class="table table-bordered table-hover " id="hospitalWardPatientsTable">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">Pacjenci</th>
-                                </tr>
-                                <tr>
-                                    <th scope="col">Imię</th>
-                                    <th scope="col">Nazwisko</th>
-                                    <th scope="col">Wiek</th>
-                                    <th scope="col">PESEL</th>
-                                    <th scope="col">Rozpoznanie</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form> -->
-
+    <!--Wyświetlenie listy oddziałów-->
     <form class="collapse" id="showHospitalWard">
         <div id="selectHospitalWardForm">
             <label for="selectHospitalWard">Wybierz oddział:</label>
@@ -208,53 +159,29 @@
                 <option value="4">Otolaryngologia</option>
                 <option value="5">Ortopedia</option>
             </select>
-            <button type="button" class=" btn-click" onclick="buttonShowHospitalWard()">Pokaż informacje o oddziale</button>
+            <button type="button" class="btn-click" onclick="buttonShowHospitalWard()" id="showHospitalWardButton">Pokaż informacje o oddziale</button>
         </div>
     </form>
-        <div class="row justify-content-center">
-            <div class="doctorsTable">
-                <table class="table table-bordered table-hover " id="hospitalWardDoctorsTable">
-                    <thead class="thead-dark">
-                        <!-- <tr>
-                            <th scope="col">Lekarze</th>
-                        </tr>
-                        <tr>
-                            <th scope="col">Imię</th>
-                            <th scope="col">Nazwisko</th>
-                            <th scope="col">Specjalizacja</th>
-                        </tr> -->
-                    </thead>
-                </table>
-
-                <table class="table table-bordered table-hover " id="hospitalWardNursesTable">
-                    <thead class="thead-dark">
-                        <!-- <tr>
-                            <th scope="col">Pielęgniarki</th>
-                        </tr>
-                        <tr>
-                            <th scope="col">Imię</th>
-                            <th scope="col">Nazwisko</th>
-                            <th scope="col">Oddział</th>
-                        </tr> -->
-                    </thead>
-                </table>
-                <table class="table table-bordered table-hover " id="hospitalWardPatientsTable">
-                    <thead class="thead-dark">
-                        <!-- <tr>
-                            <th scope="col">Pacjenci</th>
-                        </tr>
-                        <tr>
-                            <th scope="col">Imię</th>
-                            <th scope="col">Nazwisko</th>
-                            <th scope="col">Wiek</th>
-                            <th scope="col">PESEL</th>
-                            <th scope="col">Rozpoznanie</th>
-                        </tr> -->
-                    </thead>
-                </table>
-            </div>
+    <div class="row justify-content-center ">
+        <div class="doctorsTable">
+            <table id="hospitalWardDoctorsTable" class="custom-table">
+                <thead>
+                  
+                </thead>
+            </table>
+    
+            <table id="hospitalWardNursesTable" class="custom-table">
+                <thead>
+                   
+                </thead>
+            </table>
+            
+            <table id="hospitalWardPatientsTable" class="custom-table">
+                <thead>
+                </thead>
+            </table>
         </div>
-   
+    </div>
     
 <script type="module" src="script.mjs"defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
